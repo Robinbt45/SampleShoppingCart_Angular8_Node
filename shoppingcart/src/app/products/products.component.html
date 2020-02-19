@@ -1,0 +1,115 @@
+  <div class="row remove-default-margin">
+      <div class="col-xs-6 col-sm-3 col-md-2">
+            <h1 class="remove-default-margin">Products</h1>  
+      </div>
+      <div class="col-xs-9 col-sm-7 col-md-8">
+          <div class="form-group">
+                <input type="text" [(ngModel)]="userText" 
+                    placeholder="Search product..."
+                    class="form-control apply-from-input-margin"/>
+          </div>
+            
+      </div>
+      <div class="col-xs-3 col-sm-2 col-md-2">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span class="glyphicon glyphicon-shopping-cart">
+                        </span>
+                        <b>{{cartProducts.length}}</b>
+                                <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-cart w-100" role="menu">
+                                <li *ngFor="let item of cartProducts">
+                                    <div class="item product-cart-item row">
+                                    <div class="col-md-8" *ngIf="item">{{item.name}}</div>
+                                    <div class="col-md-4" *ngIf="item"><strong>${{item.price}}</strong></div>
+                                    </div>
+                                </li>
+                                <hr>
+                                <li><a class="btn btn-primary btn-block" role="button" (click)="goToCart()">View Cart</a></li>
+                                </ul>
+                </li>
+            </ul>
+      </div>
+      
+        
+  </div>
+  <hr/>
+  <div class="row">
+    <div class="col-xs-1 col-sm-1 col-md-1">
+
+    </div>
+    <div class="col-xs-12 col-sm-2 col-md-2 filterdiv">
+        <div class="row">
+            <div class="col-xs-12">
+                    <h3>Filters</h3>
+            </div>
+            
+            <br/>
+            <div>
+                    <label>
+                        <input type="radio" name="category" value="" [(ngModel)]="sortModel.category"/> All
+                    </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="category" value="breakfast" [(ngModel)]="sortModel.category"/> BreakFast
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="category" value="coffee" [(ngModel)]="sortModel.category"/> Coffee
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="category" value="BoxedMeals" [(ngModel)]="sortModel.category"/> Boxed Meals
+                </label>
+            </div>
+            
+            <hr/>
+            <h4 class="col-xs-12">Sort By</h4>
+            <div>
+                    <label>
+                        <input type="radio" name="sort" value="price" [(ngModel)]="sortModel.sort"/> Low to High Price
+                    </label>
+            </div>
+            <div>
+                    <label>
+                        <input type="radio" name="sort" value="-price" [(ngModel)]="sortModel.sort"/> High to Low Price
+                    </label>
+            </div>
+            <div>
+                    <label>
+                        <input type="radio" name="sort" value="-rating" [(ngModel)]="sortModel.sort"/> Highest Rating
+                    </label>
+            </div>
+            <div>
+                    <label>
+                        <input type="radio" name="sort" value="rating" [(ngModel)]="sortModel.sort"/> Lowest Rating
+                    </label>
+            </div>
+            <hr/>
+        </div>
+    </div>    
+    <div class="col-sm-9 col-md-9 itemsContainer">
+            <div class="row">    
+                <div class=" col-centered product-item-container" *ngFor="let product of products | productSearch:userText 
+                | orderBy:sortModel.sort | categoryPipe:sortModel.category; let i = index">
+                <div class="card card-block">
+                    <img src='assets/{{product.image}}' alt="" class="custom-image-style">
+                    <div class="product-desc-container row">
+                        <p class="nameprice">
+                            <strong>{{product.name}}: ${{product.price}}</strong>
+                        </p>
+                        <p class="product-desc-text">{{product.details}}</p>
+                        <p class="product-desc-text"><app-star [rating]='product.rating'></app-star></p>
+                    <div class="col-md-4 text-center">
+                        <button class="btn btn-primary" (click)="addToCart(i)" [disabled]="product.isAdded===true">Add To Cart</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>      

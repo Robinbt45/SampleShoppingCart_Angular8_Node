@@ -1,0 +1,22 @@
+<div class="stardiv">
+    <div (click)="onStar()">
+        <div class="icon-stack">
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+        </div>
+    </div>
+    <div class="crop" [style.width.px]="starWidth" (click)="onStar()">
+        <div class="icon-stack" style="color:dodgerblue">
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+        </div>
+    </div>
+</div>
+
+<!--86/5*2.5-->

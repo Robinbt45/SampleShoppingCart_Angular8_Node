@@ -1,0 +1,53 @@
+<div class="heading">
+  <h1>{{nmm}}</h1>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+      <div class="col-md-10 carts-body-container row">
+          <div class="cart-product-container row" *ngFor="let item of cartProducts; let i=index">
+            <div class="col-md-1">
+            
+            </div>
+            <div class="col-md-4">
+              <img src='assets/{{item.image}}' alt="" class="img-responsive">
+            </div>
+            <div class="cart-product-desc col-md-4">
+              <div><h3>{{item.name}}</h3></div>
+              <div><h4><strong>{{item.price*item.qt | currency}}</strong></h4></div>
+            </div>
+            <div class="edit-cart-container col-md-2">
+              <input (change)="updateTotal()" [(ngModel)]="item.qt" type="number" 
+              class="form-control quntity" min="0" max="9">
+            </div>
+            <div id="xbutton" class="col-md-2">
+              <a class="text-danger" (click)="removeItem(i)"><strong>
+                <span class="glyphicon glyphicon-trash"></span>
+              </strong></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container row" *ngIf="!cartProducts.length">
+          <div class="col-md-4 offset-md-4">No Item In Cart</div>
+        </div>
+        
+        <div class="col-md-2">
+            <div>
+                Hi
+                <br/> 
+                <b>Your Total amount is: 
+                <span *ngIf="!cartProducts.length"><strong>$0</strong></span>
+                <span *ngIf="cartProducts.length"><strong>${{bill}}</strong></span>
+                </b>
+               
+            </div>
+          <div>
+            <button class="btn btn-success pull-left" (click)="homedelivery()">Home Delivery</button>
+            <br/><br/>
+            <button class="btn btn-info pull-left" (click)="homedelivery()">Pick up Location</button>
+          </div>
+          
+        </div>
+  </div>
+</div>

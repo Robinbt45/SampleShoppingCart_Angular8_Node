@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+.remove-default-margin{
+    margin:0px !important;
+}
+
+.apply-from-input-margin{
+    margin:4px 0 !important;
+}
+
+.dropdown a{
+    font-size:28px;
+    padding: 5px 15px !important;
+}
+.dropdown b{
+    font-size:24px;
+}
